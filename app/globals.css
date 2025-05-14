@@ -1,0 +1,18 @@
+@import "tailwindcss";    /* loads base, components & utilities */ /* :contentReference[oaicite:1]{index=1} */
+
+@font-face {
+  font-family: 'Hero';
+  src: url('/fonts/Hero-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  @apply bg-white text-gray-800 antialiased;
+  font-family: 'Hero', sans-serif;
+}
+
+.reveal { opacity: 0; transform: translateY(40px); }
+
