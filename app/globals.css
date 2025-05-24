@@ -1,4 +1,4 @@
-@import "tailwindcss";    /* loads base, components & utilities */ /* :contentReference[oaicite:1]{index=1} */
+@import "tailwindcss";
 
 @font-face {
   font-family: 'Hero';
@@ -10,9 +10,8 @@
 html { scroll-behavior: smooth; }
 
 body {
-  @apply bg-white text-gray-800 antialiased;
+  @apply bg-black text-white antialiased;
   font-family: 'Hero', sans-serif;
 }
 
 .reveal { opacity: 0; transform: translateY(40px); }
-
