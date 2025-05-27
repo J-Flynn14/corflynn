@@ -273,6 +273,7 @@ export default function Home() {
         </AnimatedSection>
       </main>
 
+
       {/* FOOTER */}
       <footer className="px-6 py-12">
         <div className="mb-8 flex justify-center space-x-6">
