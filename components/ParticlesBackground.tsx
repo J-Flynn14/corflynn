@@ -7,6 +7,9 @@ const loadParticles = () => import('particles.js');
 
 export default function ParticlesBackground() {
   useEffect(() => {
+    // handle for clearing the interval on unmount
+    let trimInterval: NodeJS.Timeout | undefined;
+
     loadParticles().then(() => {
       (window as any).particlesJS('particles-js', {
         background: { color: '#121212' },
@@ -30,21 +33,35 @@ export default function ParticlesBackground() {
         interactivity: {
           detect_on: 'window',
           events: {
-            onhover: { enable: true, mode: 'grab' }, // smooth magnet effect
-            onclick: { enable: true, mode: 'push' }, // add extra particles
+            onhover: { enable: true, mode: 'grab' },
+            onclick: { enable: true, mode: 'push' },
             resize:  true,
           },
           modes: {
-            grab: { distance: 180, line_linked: { opacity: 0.45 } },
-            push: { particles_nb: 3 },
+            grab:  { distance: 180, line_linked: { opacity: 0.45 } },
+            push:  { particles_nb: 3 },
           },
         },
         retina_detect: true,
       });
+
+      /* -------------------------------------------------
+         Trim logic: every 30 s pop ONE particle
+         until total ≤ 100
+      --------------------------------------------------*/
+      const dom = (window as any).pJSDom?.[0];
+      if (dom) {
+        trimInterval = setInterval(() => {
+          const arr = dom.pJS.particles.array;
+          if (arr.length > 100) arr.pop();
+        }, 30_000); // 30 000 ms = 30 s
+      }
     });
 
+    /* Clean up on unmount */
     return () => {
       document.querySelector('#particles-js > canvas')?.remove();
+      if (trimInterval) clearInterval(trimInterval);
     };
   }, []);
 
@@ -55,6 +72,7 @@ export default function ParticlesBackground() {
     />
   );
 }
+
 
 
 

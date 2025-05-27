@@ -2,10 +2,10 @@
 
 import Image from 'next/image';
 import {
-  BriefcaseBusiness,
-  FileWarning,
-  Mail,
-  CalendarClock,
+  Handshake,
+  Send,
+  Megaphone,
+  Bot,
   Linkedin,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -51,22 +51,22 @@ const features = [
   {
     title: 'Automatic candidate–job matching',
     desc: 'AI-driven fit scoring to shortlist top talent instantly.',
-    icon: BriefcaseBusiness,
+    icon: Handshake,
   },
   {
     title: 'Candidate outreach',
-    desc: 'Personalised, multi-channel follow-ups that gather screening info.',
-    icon: FileWarning,
+    desc: 'Personalised follow-ups that gather screening info.',
+    icon: Send,
   },
   {
     title: 'Client outreach campaigns',
-    desc: 'Scrape job ads, match your candidates, pitch in one click.',
-    icon: Mail,
+    desc: 'Scrape job ads then match your candidates.',
+    icon: Megaphone,
   },
   {
     title: 'Recruiter agent',
-    desc: 'Ask an agent to find candidates with specific attributes.',
-    icon: CalendarClock,
+    desc: 'Ask an agent to find candidates with specific skills.',
+    icon: Bot,
   },
 ];
 
@@ -129,7 +129,8 @@ const faqs = [
 const testimonials = [
   'Through internal adoption, our systems have saved a recruitment company £95 k+ per year by reducing their workforce and optimising their hiring process.',
 ];
-
+import Lottie from 'lottie-react';
+import botAnimation from '@/public/bot_animation.json';
 /* ------------------------------------------------------------------ */
 /*  PAGE COMPONENT                                                    */
 /* ------------------------------------------------------------------ */
@@ -137,7 +138,7 @@ const testimonials = [
 export default function Home() {
   return (
     <>
-      {/* HERO */}
+      {/* ------------------------- HERO ------------------------- */}
       <AnimatedSection delay={0}>
         <header className="relative overflow-hidden py-20 text-center">
           <h1 className="text-5xl font-extrabold">Welcome to CorFlynn</h1>
@@ -148,32 +149,35 @@ export default function Home() {
       </AnimatedSection>
 
       <main>
-        {/* BENEFITS */}
+        {/* ---------------------- BENEFITS ---------------------- */}
         <AnimatedSection delay={0.05}>
           <section id="benefits" className="px-6 py-24">
             <h2 className="mb-8 text-center text-3xl font-bold">Benefits</h2>
             <div className="mx-auto mb-12 h-1 w-16 rounded bg-[#00b9a9] opacity-80 md:mb-16" />
 
             <ResizablePanelGroup direction="horizontal">
+              {/* left panel centred content */}
               <ResizablePanel className="p-4">
-                {features.map(({ title, desc, icon: Icon }) => (
-                  <div key={title} className="mb-6 flex items-start">
-                    <Icon className="mr-3 mt-1 h-6 w-6 text-[#00b9a9]" />
-                    <div>
-                      <h3 className="text-xl font-semibold">{title}</h3>
-                      <p className="text-gray-300">{desc}</p>
+                <div className="mx-auto max-w-md">
+                  {features.map(({ title, desc, icon: Icon }) => (
+                    <div key={title} className="mb-6 flex items-start">
+                      <Icon className="mr-3 mt-1 h-6 w-6 text-[#00b9a9]" />
+                      <div>
+                        <h3 className="text-xl font-semibold">{title}</h3>
+                        <p className="text-gray-300">{desc}</p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </ResizablePanel>
 
-              {/* bar stays visible but isn’t draggable */}
-              <ResizableHandle withHandle className="pointer-events-none" />
+              <ResizableHandle withHandle />
 
+              {/* right panel image */}
               <ResizablePanel className="flex items-center justify-center p-4">
                 <Image
-                  src="/placeholder-benefits.png"
-                  alt="Benefits illustration"
+                  src="/business.jpg"
+                  alt="Business illustration"
                   width={500}
                   height={400}
                   className="object-contain rounded-lg shadow-md"
@@ -183,25 +187,23 @@ export default function Home() {
           </section>
         </AnimatedSection>
 
-        {/* HOW IT WORKS */}
+        {/* ------------------- HOW IT WORKS --------------------- */}
         <AnimatedSection delay={0.1}>
           <section id="how-it-works" className="px-6 py-24">
             <h2 className="mb-8 text-center text-3xl font-bold">How it works</h2>
             <div className="mx-auto mb-12 h-1 w-16 rounded bg-[#00b9a9] opacity-80 md:mb-16" />
 
             <ResizablePanelGroup direction="horizontal">
+              {/* Lottie animation */}
               <ResizablePanel className="flex items-center justify-center p-4">
-                <Image
-                  src="/placeholder-process.png"
-                  alt="Process illustration"
-                  width={500}
-                  height={400}
-                  className="object-contain rounded-lg shadow-md"
+                <Lottie
+                  animationData={botAnimation}
+                  loop
+                  style={{ height: 350, width: '100%' }}
                 />
               </ResizablePanel>
 
-              {/* visible, non-interactive handle */}
-              <ResizableHandle withHandle className="pointer-events-none" />
+              <ResizableHandle withHandle />
 
               <ResizablePanel className="p-4">
                 {howItWorksSteps.map((step, i) => (
@@ -218,19 +220,25 @@ export default function Home() {
           </section>
         </AnimatedSection>
 
-        {/* CTA */}
+        {/* ------------------------- CTA ------------------------ */}
         <AnimatedSection delay={0.15}>
           <section id="cta" className="px-6 py-24 text-center">
             <h2 className="mb-6 text-4xl font-extrabold">
               Ready to streamline your hiring?
             </h2>
-            <button className="rounded-full bg-[#18cb96] px-8 py-4 font-semibold text-black transition hover:bg-[#00b9a9]">
-              Get Started
-            </button>
+            <a
+              href="https://calendly.com/tom-corflynn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="rounded-full bg-[#18cb96] px-8 py-4 font-semibold text-black transition hover:bg-[#00b9a9]">
+                Get Started
+              </button>
+            </a>
           </section>
         </AnimatedSection>
 
-        {/* TESTIMONIALS */}
+        {/* ------------------- TESTIMONIALS --------------------- */}
         <AnimatedSection delay={0.2}>
           <motion.section
             id="testimonials"
@@ -255,7 +263,7 @@ export default function Home() {
           </motion.section>
         </AnimatedSection>
 
-        {/* FAQ */}
+        {/* ------------------------- FAQ ------------------------ */}
         <AnimatedSection delay={0.25}>
           <section id="faq" className="px-6 py-24">
             <h2 className="mb-8 text-center text-3xl font-bold">FAQ</h2>
@@ -263,9 +271,23 @@ export default function Home() {
 
             <Accordion type="single" collapsible className="mx-auto max-w-2xl">
               {faqs.map((item, i) => (
-                <AccordionItem key={i} value={`item-${i}`}>
-                  <AccordionTrigger>{item.q}</AccordionTrigger>
-                  <AccordionContent>{item.a}</AccordionContent>
+                <AccordionItem key={i} value={`item-${i}`} className="border-0">
+                  <AccordionTrigger
+                    className="flex w-full items-center justify-between
+                              py-4 font-medium transition-all           /* ⬅ keeps smoothness */
+                              hover:no-underline focus:no-underline"
+                  >
+                    {item.q}
+                  </AccordionTrigger>
+
+                  {/* accent-coloured answer, animations preserved */}
+                  <AccordionContent
+                    className="overflow-hidden text-sm text-[#18cb96]
+                              data-[state=closed]:animate-accordion-up
+                              data-[state=open]:animate-accordion-down"
+                  >
+                    {item.a}
+                  </AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
@@ -273,8 +295,7 @@ export default function Home() {
         </AnimatedSection>
       </main>
 
-
-      {/* FOOTER */}
+      {/* ------------------------ FOOTER ----------------------- */}
       <footer className="px-6 py-12">
         <div className="mb-8 flex justify-center space-x-6">
           <a href="https://linkedin.com" aria-label="LinkedIn">
@@ -288,6 +309,8 @@ export default function Home() {
     </>
   );
 }
+
+
 
 
 
