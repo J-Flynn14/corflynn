@@ -159,7 +159,7 @@ export default function Home() {
     <>
       {/* ------------------------- HERO ------------------------- */}
       <AnimatedSection delay={0}>
-        <header className="relative overflow-hidden py-20 text-center">
+        <header className="relative overflow-hidden py-10 text-center">   {/* was py-20 */}
           <h1 className="text-5xl font-extrabold">Welcome to CorFlynn</h1>
           <p className="mt-4 text-lg text-gray-300">
             AI-powered automations for any business.
