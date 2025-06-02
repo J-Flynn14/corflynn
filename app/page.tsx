@@ -7,6 +7,8 @@ import {
   Megaphone,
   Bot,
   Linkedin,
+  PhoneCall,
+  CornerDownRight
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import {
@@ -21,7 +23,7 @@ import {
   AccordionContent,
 } from '../components/ui/accordion';
 
-/* ------------------------------------------------------------------ */
+//* ------------------------------------------------------------------ */
 /*  FAST SCROLL-FADE WRAPPER                                          */
 /* ------------------------------------------------------------------ */
 function AnimatedSection({
@@ -46,13 +48,20 @@ function AnimatedSection({
 /* ------------------------------------------------------------------ */
 /*  DATA                                                              */
 /* ------------------------------------------------------------------ */
-
-const features = [
+const recruitmentTools = [
   {
     title: 'Automatic candidate–job matching',
     desc: 'AI-driven fit scoring to shortlist top talent instantly.',
     icon: Handshake,
   },
+  {
+    title: 'Recruiter agent',
+    desc: 'Ask an agent to find candidates with specific skills.',
+    icon: Bot,
+  },
+];
+
+const outreachTools = [
   {
     title: 'Candidate outreach',
     desc: 'Personalised follow-ups that gather screening info.',
@@ -63,10 +72,18 @@ const features = [
     desc: 'Scrape job ads then match your candidates.',
     icon: Megaphone,
   },
+];
+
+const otherTools = [
   {
-    title: 'Recruiter agent',
-    desc: 'Ask an agent to find candidates with specific skills.',
-    icon: Bot,
+    title: 'Personalised Voice agent',
+    desc: 'Records information and answers phone calls in real time.',
+    icon: PhoneCall,
+  },
+  {
+    title: 'even more coming soon!',
+    desc: '',
+    icon: CornerDownRight,
   },
 ];
 
@@ -102,7 +119,7 @@ const faqs = [
   {
     q: 'Is the platform GDPR-compliant and how is candidate data protected?',
     a:
-      'Yes. The entire system is deployed on a dedicated domain and server that only your organisation can access after setup. CorFlynn engineers are granted entry solely for maintenance. Data stays in EU data-centres, encrypted in transit and at rest, with consent and deletion workflows meeting GDPR requirements.',
+      'Yes. All AI models run locally on a dedicated server that only your organisation can access. Data stays in EU data-centres, encrypted in transit and at rest, with consent and deletion workflows meeting GDPR requirements.',
   },
   {
     q: 'Can CorFlynn integrate with my existing ATS or CRM?',
@@ -112,7 +129,7 @@ const faqs = [
   {
     q: 'What ROI can I expect and how quickly?',
     a:
-      'Most agencies see value the very first day: the system re-surfaces dormant candidates and matches them to open roles, often yielding placements within 24 hours of go-live. Over the first month, time-to-fill typically drops 50-70 %.',
+      'Most agencies see value the very first day: the system re-surfaces dormant candidates and matches them to open roles, often yielding placements within 24 hours of go-live. Over the first month, time-to-fill typically drops 50–70 %.',
   },
   {
     q: 'Do I own the software and can I resell it?',
@@ -127,10 +144,12 @@ const faqs = [
 ];
 
 const testimonials = [
-  'Through internal adoption, our systems have saved a recruitment company £95 k+ per year by reducing their workforce and optimising their hiring process.',
+  'Through internal adoption, our systems have saved a recruitment company £95,000+ per year by reducing their workforce and optimising their hiring process.',
 ];
+
 import Lottie from 'lottie-react';
 import botAnimation from '@/public/bot_animation.json';
+
 /* ------------------------------------------------------------------ */
 /*  PAGE COMPONENT                                                    */
 /* ------------------------------------------------------------------ */
@@ -143,7 +162,7 @@ export default function Home() {
         <header className="relative overflow-hidden py-20 text-center">
           <h1 className="text-5xl font-extrabold">Welcome to CorFlynn</h1>
           <p className="mt-4 text-lg text-gray-300">
-            Automate recruitment workflows with AI-powered agents.
+            AI-powered automations for any business.
           </p>
         </header>
       </AnimatedSection>
@@ -158,16 +177,54 @@ export default function Home() {
             <ResizablePanelGroup direction="horizontal">
               {/* left panel centred content */}
               <ResizablePanel className="p-4">
-                <div className="mx-auto max-w-md">
-                  {features.map(({ title, desc, icon: Icon }) => (
-                    <div key={title} className="mb-6 flex items-start">
-                      <Icon className="mr-3 mt-1 h-6 w-6 text-[#00b9a9]" />
-                      <div>
-                        <h3 className="text-xl font-semibold">{title}</h3>
-                        <p className="text-gray-300">{desc}</p>
+                <div className="mx-auto max-w-md space-y-8">
+                  {/* Recruitment tools */}
+                  <div>
+                    <h3 className="mb-4 text-lg font-semibold text-[#18cb96]">
+                      Recruitment tools
+                    </h3>
+                    {recruitmentTools.map(({ title, desc, icon: Icon }) => (
+                      <div key={title} className="mb-6 flex items-start">
+                        <Icon className="mr-3 mt-1 h-6 w-6 text-[#00b9a9]" />
+                        <div>
+                          <h4 className="text-xl font-semibold">{title}</h4>
+                          <p className="text-gray-300">{desc}</p>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+
+                  {/* Outreach tools */}
+                  <div>
+                    <h3 className="mb-4 text-lg font-semibold text-[#18cb96]">
+                      Outreach tools
+                    </h3>
+                    {outreachTools.map(({ title, desc, icon: Icon }) => (
+                      <div key={title} className="mb-6 flex items-start">
+                        <Icon className="mr-3 mt-1 h-6 w-6 text-[#00b9a9]" />
+                        <div>
+                          <h4 className="text-xl font-semibold">{title}</h4>
+                          <p className="text-gray-300">{desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Voice agent */}
+                  <div>
+                    <h3 className="mb-4 text-lg font-semibold text-[#18cb96]">
+                      Other tools
+                    </h3>
+                    {otherTools.map(({ title, desc, icon: Icon }) => (
+                      <div key={title} className="mb-6 flex items-start">
+                        <Icon className="mr-3 mt-1 h-6 w-6 text-[#00b9a9]" />
+                        <div>
+                          <h4 className="text-xl font-semibold">{title}</h4>
+                          <p className="text-gray-300">{desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </ResizablePanel>
 
@@ -190,7 +247,9 @@ export default function Home() {
         {/* ------------------- HOW IT WORKS --------------------- */}
         <AnimatedSection delay={0.1}>
           <section id="how-it-works" className="px-6 py-24">
-            <h2 className="mb-8 text-center text-3xl font-bold">How it works</h2>
+            <h2 className="mb-8 text-center text-3xl font-bold">
+              How our recruitment pipeline works
+            </h2>
             <div className="mx-auto mb-12 h-1 w-16 rounded bg-[#00b9a9] opacity-80 md:mb-16" />
 
             <ResizablePanelGroup direction="horizontal">
@@ -220,11 +279,36 @@ export default function Home() {
           </section>
         </AnimatedSection>
 
-        {/* ------------------------- CTA ------------------------ */}
+        {/* --------------- TESTIMONIALS (moved up) --------------- */}
         <AnimatedSection delay={0.15}>
+          <motion.section
+            id="testimonials"
+            className="px-6 py-24"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ duration: 0.25 }}
+            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+          >
+            <h2 className="mb-12 text-center text-3xl font-bold">
+              How our products have helped companies so far
+            </h2>
+
+            <div className="mx-auto max-w-4xl px-6 text-center">
+              {testimonials.map((quote, idx) => (
+                <p key={idx} className="mb-4 text-xl text-gray-200">
+                  {quote}
+                </p>
+              ))}
+            </div>
+          </motion.section>
+        </AnimatedSection>
+
+        {/* ------------------------- CTA ------------------------ */}
+        <AnimatedSection delay={0.2}>
           <section id="cta" className="px-6 py-24 text-center">
             <h2 className="mb-6 text-4xl font-extrabold">
-              Ready to streamline your hiring?
+              Ready to streamline your business?
             </h2>
             <a
               href="https://calendly.com/tom-corflynn"
@@ -238,31 +322,6 @@ export default function Home() {
           </section>
         </AnimatedSection>
 
-        {/* ------------------- TESTIMONIALS --------------------- */}
-        <AnimatedSection delay={0.2}>
-          <motion.section
-            id="testimonials"
-            className="px-6 py-24"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            transition={{ duration: 0.25 }}
-            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-          >
-            <h2 className="mb-12 text-center text-3xl font-bold">
-              How our product has helped recruitment companies
-            </h2>
-
-            <div className="mx-auto max-w-4xl px-6 text-center">
-              {testimonials.map((quote, idx) => (
-                <p key={idx} className="mb-4 text-xl text-gray-200">
-                  {quote}
-                </p>
-              ))}
-            </div>
-          </motion.section>
-        </AnimatedSection>
-
         {/* ------------------------- FAQ ------------------------ */}
         <AnimatedSection delay={0.25}>
           <section id="faq" className="px-6 py-24">
@@ -274,7 +333,7 @@ export default function Home() {
                 <AccordionItem key={i} value={`item-${i}`} className="border-0">
                   <AccordionTrigger
                     className="flex w-full items-center justify-between
-                              py-4 font-medium transition-all           /* ⬅ keeps smoothness */
+                              py-4 font-medium transition-all
                               hover:no-underline focus:no-underline"
                   >
                     {item.q}
@@ -309,6 +368,8 @@ export default function Home() {
     </>
   );
 }
+
+
 
 
 
