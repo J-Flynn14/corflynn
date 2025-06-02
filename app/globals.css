@@ -154,3 +154,21 @@ footer, footer * {
   -ms-user-select: text;
   user-select: text;
 }
+
+@layer utilities {
+  .btn-gradient {
+    @apply relative z-10 rounded-full px-8 py-4 font-semibold text-white
+           transition hover:saturate-150;
+
+    /* custom animated gradient (now 3s, continuous pan) */
+    background: linear-gradient(
+      90deg,
+      #00a5b6 0%,
+      #18cb96 33%,
+      #00b9a9 66%,
+      #0d203b 100%
+    );
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+}

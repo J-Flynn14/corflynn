@@ -1,29 +1,37 @@
 'use client';
 
+import React from 'react';
 import Image from 'next/image';
+import Lottie from 'lottie-react';
+import { motion } from 'framer-motion';                
+import HeroTitle from '@/components/HeroTitle';       
+
 import {
   Handshake,
+  Bot,
   Send,
   Megaphone,
-  Bot,
-  Linkedin,
   PhoneCall,
-  CornerDownRight
+  CornerDownRight,
+  Linkedin,
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+
 import {
-  ResizablePanelGroup,
   ResizablePanel,
+  ResizablePanelGroup,
   ResizableHandle,
-} from '../components/ui/resizable';
+} from '@/components/ui/resizable';
+
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from '../components/ui/accordion';
+} from '@/components/ui/accordion';
 
-//* ------------------------------------------------------------------ */
+import botAnimation from '@/public/bot_animation.json';
+
+/* ------------------------------------------------------------------ */
 /*  FAST SCROLL-FADE WRAPPER                                          */
 /* ------------------------------------------------------------------ */
 function AnimatedSection({
@@ -147,23 +155,25 @@ const testimonials = [
   'Through internal adoption, our systems have saved a recruitment company £95,000+ per year by reducing their workforce and optimising their hiring process.',
 ];
 
-import Lottie from 'lottie-react';
-import botAnimation from '@/public/bot_animation.json';
-
 /* ------------------------------------------------------------------ */
 /*  PAGE COMPONENT                                                    */
 /* ------------------------------------------------------------------ */
-
 export default function Home() {
   return (
     <>
       {/* ------------------------- HERO ------------------------- */}
       <AnimatedSection delay={0}>
-        <header className="relative overflow-hidden py-10 text-center">   {/* was py-20 */}
-          <h1 className="text-5xl font-extrabold">Welcome to CorFlynn</h1>
-          <p className="mt-4 text-lg text-gray-300">
-            AI-powered automations for any business.
-          </p>
+        <header className="relative overflow-hidden py-10 text-center">
+          <HeroTitle>Welcome to CorFlynn</HeroTitle>
+
+          {/* Subtitle stays original size but animates */}
+          <HeroTitle
+            as="p"
+            size="small"
+            className="mt-4 text-gray-300 leading-snug"
+          >
+            AI-powered automations for any business
+          </HeroTitle>
         </header>
       </AnimatedSection>
 
@@ -175,7 +185,6 @@ export default function Home() {
             <div className="mx-auto mb-12 h-1 w-16 rounded bg-[#00b9a9] opacity-80 md:mb-16" />
 
             <ResizablePanelGroup direction="horizontal">
-              {/* left panel centred content */}
               <ResizablePanel className="p-4">
                 <div className="mx-auto max-w-md space-y-8">
                   {/* Recruitment tools */}
@@ -210,7 +219,7 @@ export default function Home() {
                     ))}
                   </div>
 
-                  {/* Voice agent */}
+                  {/* Other tools */}
                   <div>
                     <h3 className="mb-4 text-lg font-semibold text-[#18cb96]">
                       Other tools
@@ -230,14 +239,13 @@ export default function Home() {
 
               <ResizableHandle withHandle />
 
-              {/* right panel image */}
               <ResizablePanel className="flex items-center justify-center p-4">
                 <Image
                   src="/business.jpg"
                   alt="Business illustration"
                   width={500}
                   height={400}
-                  className="object-contain rounded-lg shadow-md"
+                  className="rounded-lg object-contain shadow-md"
                 />
               </ResizablePanel>
             </ResizablePanelGroup>
@@ -253,7 +261,6 @@ export default function Home() {
             <div className="mx-auto mb-12 h-1 w-16 rounded bg-[#00b9a9] opacity-80 md:mb-16" />
 
             <ResizablePanelGroup direction="horizontal">
-              {/* Lottie animation */}
               <ResizablePanel className="flex items-center justify-center p-4">
                 <Lottie
                   animationData={botAnimation}
@@ -279,7 +286,7 @@ export default function Home() {
           </section>
         </AnimatedSection>
 
-        {/* --------------- TESTIMONIALS (moved up) --------------- */}
+        {/* --------------- TESTIMONIALS ------------------------- */}
         <AnimatedSection delay={0.15}>
           <motion.section
             id="testimonials"
@@ -307,17 +314,14 @@ export default function Home() {
         {/* ------------------------- CTA ------------------------ */}
         <AnimatedSection delay={0.2}>
           <section id="cta" className="px-6 py-24 text-center">
-            <h2 className="mb-6 text-4xl font-extrabold">
-              Ready to streamline your business?
-            </h2>
+            <HeroTitle as="h2">Ready to streamline your business?</HeroTitle>
+
             <a
               href="https://calendly.com/tom-corflynn"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <button className="rounded-full bg-[#18cb96] px-8 py-4 font-semibold text-black transition hover:bg-[#00b9a9]">
-                Get Started
-              </button>
+              <button className="btn-gradient mt-10">Get Started</button>
             </a>
           </section>
         </AnimatedSection>
@@ -331,20 +335,11 @@ export default function Home() {
             <Accordion type="single" collapsible className="mx-auto max-w-2xl">
               {faqs.map((item, i) => (
                 <AccordionItem key={i} value={`item-${i}`} className="border-0">
-                  <AccordionTrigger
-                    className="flex w-full items-center justify-between
-                              py-4 font-medium transition-all
-                              hover:no-underline focus:no-underline"
-                  >
+                  <AccordionTrigger className="flex w-full items-center justify-between py-4 font-medium transition-all hover:no-underline focus:no-underline">
                     {item.q}
                   </AccordionTrigger>
 
-                  {/* accent-coloured answer, animations preserved */}
-                  <AccordionContent
-                    className="overflow-hidden text-sm text-[#18cb96]
-                              data-[state=closed]:animate-accordion-up
-                              data-[state=open]:animate-accordion-down"
-                  >
+                  <AccordionContent className="overflow-hidden text-sm text-[#18cb96] data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
                     {item.a}
                   </AccordionContent>
                 </AccordionItem>
@@ -368,6 +363,7 @@ export default function Home() {
     </>
   );
 }
+
 
 
 

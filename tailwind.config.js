@@ -20,23 +20,32 @@ module.exports = {
       fontFamily: {
         hero: ['"Hero"', 'sans-serif'],
       },
+
+      /* ---------- Animated gradient helpers ---------- */
+      backgroundSize: {
+        '200%': '200% 200%',
+      },
       keyframes: {
-        // Animata gradient background
-        'bg-position': {
+        gradient: {
           '0%':   { backgroundPosition: '0% 50%' },
-          '100%': { backgroundPosition: '100% 50%' },
+          '25%':  { backgroundPosition: '50% 100%' },
+          '50%':  { backgroundPosition: '100% 50%' },
+          '75%':  { backgroundPosition: '50% 0%' },
+          '100%': { backgroundPosition: '0% 50%' },
         },
-        // Simple fade-in for sections
         fadeIn: {
           from: { opacity: '0' },
           to:   { opacity: '1' },
         },
+        fadeInUp: {
+          from: { opacity: '0', transform: 'translateY(20px)' },
+          to:   { opacity: '1', transform: 'translateY(0)' },
+        },
       },
       animation: {
-        'bg-position': 'bg-position 6s ease-in-out infinite alternate',
-        'fade-in-up':  'fade-in-up 0.6s ease-out forwards',
-        // optional shorthand fade-in
+        gradient: 'gradient 3s ease infinite',   // faster (3s)
         'fade-in':     'fadeIn 0.4s ease-out forwards',
+        'fade-in-up':  'fadeInUp 0.6s ease-out forwards',
       },
     },
   },
@@ -44,3 +53,4 @@ module.exports = {
     require('tailwindcss-animate'),
   ],
 };
+
