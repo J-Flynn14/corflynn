@@ -311,7 +311,7 @@ export default function Home() {
           </motion.section>
         </AnimatedSection>
 
-        {/* ------------------------- CTA ------------------------ */}
+        {/* ------------------------- CTA ------------------------  */}
         <AnimatedSection delay={0.2}>
           <section id="cta" className="px-6 py-24 text-center">
             <HeroTitle as="h2">Ready to streamline your business?</HeroTitle>
