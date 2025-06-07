@@ -16,7 +16,9 @@ body {
   @apply bg-[#121212] text-white antialiased;
   font-family: 'Hero', sans-serif;
 }
-
+* {
+  box-sizing: border-box;
+}
 .reveal { opacity: 0; transform: translateY(40px); }
 
 @theme inline {

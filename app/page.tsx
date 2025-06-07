@@ -166,7 +166,6 @@ export default function Home() {
         <header className="relative overflow-hidden py-10 text-center">
           <HeroTitle>Welcome to CorFlynn</HeroTitle>
 
-          {/* Subtitle stays original size but animates */}
           <HeroTitle
             as="p"
             size="small"
