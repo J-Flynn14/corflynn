@@ -4,13 +4,14 @@ import { ElementType, ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 /**
- * Polymorphic animated title that fades from muted grey to off‑white while
- * adding a subtle glow. Accepts a `size` prop so subtitles can stay smaller
- * yet reuse the same animation.
+ * Animated hero heading.
+ * - Fades from muted grey to soft off-white.
+ * - No mix-blend-mode, so the particles do **not** invert the text.
+ * - Same font sizes and weight you had originally.
  */
 const textVariants = {
   initial: {
-    color: "var(--vscode-editor-foreground, #6D6D6D)",
+    color: "#6D6D6D",
     textShadow: "none",
   },
   visible: {
@@ -21,15 +22,13 @@ const textVariants = {
 };
 
 const sizeClasses = {
-  large: "text-4xl md:text-6xl",
+  large: "text-4xl md:text-6xl", // original scale
   small: "text-lg md:text-xl",
 };
 
-interface HeroTitleBaseProps {
+interface Props {
   children: ReactNode;
-  /** Heading tag (h1‑h6) or other element. */
   as?: ElementType;
-  /** Font‑size preset. */
   size?: keyof typeof sizeClasses;
   className?: string;
 }
@@ -39,22 +38,21 @@ export default function HeroTitle({
   as = "h1",
   size = "large",
   className = "",
-}: HeroTitleBaseProps) {
-  const shouldReduce = useReducedMotion();
-  const Tag = as as ElementType;
-  const MotionTag = motion(Tag);
+}: Props) {
+  const reduce = useReducedMotion();
+  const MotionTag = motion(as as ElementType);
 
   return (
     <MotionTag
       initial="initial"
-      animate={shouldReduce ? "initial" : "visible"}
+      animate={reduce ? "initial" : "visible"}
       variants={textVariants}
-      style={{ mixBlendMode: "difference" }}
       className={`${sizeClasses[size]} font-semibold tracking-tight leading-tight ${className}`}
     >
       {children}
     </MotionTag>
   );
 }
+
 
 
