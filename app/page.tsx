@@ -158,14 +158,17 @@ export default function Home() {
       {/* ------------------------- HERO ------------------------- */}
       <AnimatedSection delay={0.15}>
         <header className="relative overflow-hidden py-28 text-center">
-          <HeroTitle>Welcome to CorFlynn</HeroTitle>
-          <HeroTitle
-            as="p"
-            size="small"
-            className="mt-4 text-gray-300 leading-snug"
-          >
-            AI-powered automations for any business
-          </HeroTitle>
+          {/* NEW inner wrapper → caps width on small screens */}
+          <div className="mx-auto max-w-[90vw] px-4">
+            <HeroTitle>Welcome to CorFlynn</HeroTitle>
+            <HeroTitle
+              as="p"
+              size="small"
+              className="mt-4 text-gray-300 leading-snug"
+            >
+              AI-powered automations for any business
+            </HeroTitle>
+          </div>
         </header>
       </AnimatedSection>
 
